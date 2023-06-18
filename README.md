@@ -1,9 +1,6 @@
-Certainly! Here's an example of how you can create a `README.md` file for your repository:
-
-```markdown
 # Text-to-Speech Converter
 
-This repository contains a Python script that converts a long text into speech by utilizing a Text-to-Speech API. The script breaks down the input text into smaller chunks and saves each resulting speech segment in a separate audio file.
+This repository contains a Python script that converts a long text into speech by utilizing a Eleven Labs API. The script breaks down the input text into smaller chunks and saves each resulting speech segment in a separate audio file. After that these files are merged together.
 
 ## Usage
 
@@ -60,5 +57,3 @@ This repository contains a Python script that converts a long text into speech b
 
 This project is licensed under the [MIT License](LICENSE).
 ```
-
-You can copy and paste the above content into a `README.md` file in your repository. Feel free to modify the instructions, add more sections, or provide any additional information relevant to your project.
