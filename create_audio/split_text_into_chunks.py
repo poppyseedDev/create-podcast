@@ -1,5 +1,3 @@
-import nltk
-
 class TextSplitter:
     """
     A class used to split text into chunks.

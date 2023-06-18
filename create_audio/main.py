@@ -1,19 +1,20 @@
-from text_to_speech import TextToSpeechAPI
+from create_audio.text_to_speech import TextToSpeechAPI
 from create_audio.constants import MAX_CHUNK_SIZE
-from split_text_into_chunks import TextSplitter
-from merge_audio_files import AudioMerger
-from constants import DIR_STORE_AUDIO_CHUNKS, DIR_STORE_FINAL_AUDIO
+from create_audio.split_text_into_chunks import TextSplitter
+from create_audio.merge_audio_files import AudioMerger
 
 class CreateAudio:
     """
     A class for converting text to audio by splitting it into chunks, converting each chunk to speech,
     and then merging the resulting audio files.
     """
-    def __init__(self):
+    def __init__(self, dir_store_audio_chunks, dir_store_final_audio):
         """
         Initializes a CreateAudio instance.
         """
         self.api = TextToSpeechAPI("https://api.elevenlabs.io")
+        self.dir_store_audio_chunks = dir_store_audio_chunks
+        self.dir_store_final_audio = dir_store_final_audio
 
     def split_into_chunks(self, text, display=False):
         """
@@ -45,7 +46,7 @@ class CreateAudio:
             chunks (list): A list of text chunks.
         """
         for i, chunk in enumerate(chunks):
-            save_path = DIR_STORE_AUDIO_CHUNKS + f"/audio_{i}.mp3"
+            save_path = self.dir_store_audio_chunks + f"/audio_{i}.mp3"
             self.api.convert_text_to_speech(chunk, save_path)
 
     def merge_audio_files(self, directory_path, output_file):
@@ -73,7 +74,7 @@ class CreateAudio:
 
         chunks = self.split_into_chunks(text, display=True)
         self.go_through_chunks(chunks)
-        self.merge_audio_files(DIR_STORE_AUDIO_CHUNKS, DIR_STORE_FINAL_AUDIO + "/merged_audio.mp3")
+        self.merge_audio_files(self.dir_store_audio_chunks, self.dir_store_final_audio + "/merged_audio.mp3")
 
 if __name__ == "__main__":
     converter = CreateAudio()
