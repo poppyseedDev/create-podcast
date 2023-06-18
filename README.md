@@ -45,8 +45,9 @@ This repository contains a Python script that converts a long text into speech b
 
 ## TODO:
 ### For making audio work:
-- [ ] test chunking
-- take all audio files and merge them together
+- [x] calling Eleven Labs API
+- [x] test chunking 5000 characters
+- [x] take all audio files and merge them together
 
 ### For making automated podcast generation work
 - look into autoGPT how it works and implement a specific funtionality of iterating until the desired podcast text is done
