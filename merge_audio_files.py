@@ -1,6 +1,7 @@
 import os
 from pydub import AudioSegment
 from pydub.utils import make_chunks
+from constants import DURATION_BETWEEN_AUDIO_CHUNKS
 
 class AudioMerger:
     def __init__(self, directory):
@@ -21,9 +22,9 @@ class AudioMerger:
             # Load the audio file
             audio = AudioSegment.from_file(file_path, format="mp3")
 
-            # Add 2-second silence at the end of each audio file (except the last one)
+            # Add DURATION_BETWEEN_AUDIO_CHUNKS-millisecond silence at the end of each audio file (except the last one)
             if i < len(audio_files) - 1:
-                silence = AudioSegment.silent(duration=2000)
+                silence = AudioSegment.silent(duration=DURATION_BETWEEN_AUDIO_CHUNKS)
                 audio += silence
 
             self.merged_audio += audio
