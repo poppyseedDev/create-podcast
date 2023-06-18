@@ -1,7 +1,8 @@
 import os
 from text_to_speech import TextToSpeechAPI
-from constants import MAX_CHUNK_SIZE
+from create_audio.constants import MAX_CHUNK_SIZE
 from split_text_into_chunks import TextSplitter
+from merge_audio_files import AudioMerger
 
 def split_into_chunks(text, display=False):
     splitter = TextSplitter(MAX_CHUNK_SIZE)
@@ -21,16 +22,23 @@ def go_through_chunks(api, chunks):
         save_path = f"audio/audio_{i}.mp3"  # Each result will be saved in a separate file
         api.convert_text_to_speech(chunk, save_path)
 
+def merge_audio_files(directory_path, output_file):
+    audio_merger = AudioMerger(directory_path)
+    audio_merger.merge_audio_files_with_interval()
+    audio_merger.export_merged_audio(output_file)
+
 def main():
     # Read the content of the file
     with open("podcast.txt", "r") as file:
         text = file.read()
 
-    api = TextToSpeechAPI("https://api.elevenlabs.io")  # Replace with the base URL of the API
+    api = TextToSpeechAPI("https://api.elevenlabs.io")
     
-    split_into_chunks(text, display=True)
+    chunks = split_into_chunks(text, display=True)
 
-    #go_through_chunks(api, chunks)
+    go_through_chunks(api, chunks)
+
+    merge_audio_files("audio", "merged_audio.mp3")
 
 if __name__ == "__main__":
     main()
