@@ -1,12 +1,12 @@
 import requests
 import json
 from dotenv import dotenv_values
-from constants import VOICE_STABILITY, VOICE_SIMILARITY_BOOST
+from constants import VOICE_ID, VOICE_MODEL_ID, VOICE_STABILITY, VOICE_SIMILARITY_BOOST
 
 class TextToSpeechAPI:
     def __init__(self, base_url):
         self.base_url = base_url
-        self.voice_id = "pz6vzFxT6afcSpv62JCK"  # Replace with the desired voice ID
+        self.voice_id = VOICE_ID # Replace with the desired voice ID
         self.api_key = dotenv_values(".env.local").get("ELEVEN_LABS_API_KEY")  # Replace with the actual key name
 
     def convert_text_to_speech(self, text, save_path="audio/audio.mp3"):
@@ -15,10 +15,10 @@ class TextToSpeechAPI:
         # Request body
         body = {
             "text": text,
-            "model_id": "eleven_monolingual_v1",
+            "model_id": VOICE_MODEL_ID,
             "voice_settings": {
-                "stability": 0.43,
-                "similarity_boost": 0.75
+                "stability": VOICE_STABILITY,
+                "similarity_boost": VOICE_SIMILARITY_BOOST
             }
         }
 
