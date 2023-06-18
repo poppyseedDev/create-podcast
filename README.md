@@ -43,6 +43,14 @@ This repository contains a Python script that converts a long text into speech b
 
    - The script will create separate audio files for each text chunk in the `audio_#.wav` format.
 
+## TODO:
+### For making audio work:
+- [ ] test chunking
+- take all audio files and merge them together
+
+### For making automated podcast generation work
+- look into autoGPT how it works and implement a specific funtionality of iterating until the desired podcast text is done
+
 ## Configuration
 
 - Adjust the `MAX_CHUNK_SIZE` constant in the `constants.py` file to modify the maximum chunk size for text segmentation.
