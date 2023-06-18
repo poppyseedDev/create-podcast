@@ -1,1 +1,222 @@
-Hello and welcome to the Poppyseed dev podcast, in this show we bring you the latest and greatest tech news!
+Welcome to the Poppyseed Dev Podcast, your ultimate gateway to the intriguing world of blockchain technology. We are here to help navigate the often complex landscapes of blockchain projects, ensuring you gain a solid grasp of their essence before you plunge into their comprehensive documentation.
+
+I’m your host, Aurora Poppyseed, and today, we’re diving deep into an exciting project in the blockchain ecosystem. The Mantle Network!
+
+Blockchain technology has certainly come a long way since its inception, and today, we’re talking about one of its latest advancements, the Mantle network. In its simplest form, Mantle is a technology stack designed to scale Ethereum, the world’s leading smart contract platform, and do so while maintaining EVM compatibility.
+
+If you’re new to these terms, don’t worry, we’ll break everything down for you. By the end of this episode, you’ll have a good understanding of Mantle’s architecture, its innovative solutions to scalability, and how it operates within the Ethereum ecosystem.
+
+So, let’s get started by delving into the basics!
+
+First up, we’re going to dive into what Mantle is and how optimistic rollups work. After that, we will discuss Mantle’s distinctive features and improvements over traditional Layer 2 solutions.
+
+Next, we’ll explore Mantle’s modular blockchain rollups, a concept that revolutionises the traditional operations of a rollup, and Mantle’s breakthrough data availability solution.
+
+And of course, we’ll talk about Mantle’s unique decentralized sequencer, its improved fraud proof system, and we’ll walk you through the transaction lifecycle on Mantle.
+
+At the end of the podcast you will also get resources for starting with Mantle as a developer.
+I know it sounds like a lot! So without further ado let’s get started!
+
+So whether you’re a seasoned developer, a crypto enthusiast, or just curious about the future of blockchain, stay tuned. It’s going to be a fantastic ride!
+
+Great, now that we have some basic understanding of Mantle and its purpose, let’s move on to one of its key features.
+
+At its core, Mantle employs a modular architecture that uses what is known as an ‘optimistic rollup,’ along with an innovative data availability solution. This approach allows Mantle to not only inherit security from Ethereum, but also to offer a cheaper and more accessible data availability. Now, I hear some of you thinking. ‘Modular blockchain? Optimistic rollups!? I’m feeling lost…’ But don’t worry, we’ve got you covered.
+
+These terms might sound a bit intimidating if you’re new to the blockchain world, but they’re central to understanding the significant leaps Mantle is making in the field.
+
+So before we delve into the details of Mantle, let’s first get a clear understanding of what are optimistic rollup, which will then enable us to appreciate the unique features and benefits that Mantle offers.
+
+Optimistic rollups are layer-2 solutions that increase the scalability of underlying blockchains (such as Ethereum) by conducting computations off-chain and then submitting the computed results to the main chain. These rollups rely on an “optimistic” approach: they assume that the computations are done correctly unless challenged by a fraud proof.
+
+There are few key words we have to understand when it comes to the optimistic rollups architecture.
+
+1. The Smart Contract. This sits on the Ethereum main chain and manages the interaction between the layer-2 rollup chain and the main chain. The smart contract locks user funds deposited for layer-2 transactions, verifies the data submitted by the sequencer, and responds to fraud proofs.
+
+2. Sequencer: The sequencer collects, organizes, and executes transactions on the layer-2 chain. Once a batch of transactions is executed, the sequencer generates a cryptographic proof (Merkle root) of the transactions and submits it to the main chain.
+
+3. Validators: These are nodes that monitor the layer-2 chain, checking for fraudulent activities. If they spot an invalid transaction, they generate a fraud proof and submit it to the smart contract on the main chain. If the fraud proof is accepted, the chain’s state is rolled back to the previous valid state.
+
+The entire system is dependent on the “optimistic” approach mentioned earlier. When a sequencer submits a batch of transactions, the system assumes they are correct unless a validator submits a fraud proof to challenge it. If the challenge is successful, the sequencer is punished, and the chain’s state is rolled back to the last valid state. If no fraud proof is submitted within a certain period (e.g., a week), the transactions are finalized.
+
+This approach allows layer-2 transactions to be processed much faster than on the main chain. However, the main drawback is that it requires a waiting period to finalize transactions, especially when users want to withdraw their funds from the layer-2 back to the main chain. This is to allow ample time for potential fraud proofs to be submitted.
+
+It’s important to note that optimistic rollups are more generalist than zero-knowledge rollups (another layer-2 solution). They can support any smart contract that can be executed on the main chain, which makes them easier for developers to work with. They essentially extend the capabilities of the main chain, allowing more complex applications to be built with lower gas fees and faster transaction times.
+
+Modular blockchain rollups
+Great, now that we have some basic understanding of optimistic rollups, let’s move on to one of its key features. The modular blockchain rollups.
+
+Now, existing systems, such as traditional Optimistic Rollups, or ORs for short, rely on Ethereum for three things: data availability, final settlement, and as an execution layer for fraud proofs. In other words, an OR is essentially a blockchain that processes Layer 2 transactions on a separate execution layer but relies on Ethereum for final settlement. While this does improve Ethereum’s scalability, it also introduces several downsides: Layer 2 users are exposed to high fees, as the optimistic rollup needs to post transaction data to Ethereum, using Ethereum as a data availability layer can limit throughput for Layer 2 nodes, and, importantly, ORs require a lengthy challenge period. Typically it’s 7 days. After that finality is achieved, and users can exit their funds from the Layer 2 chain.
+
+Here’s where Mantle’s modular architecture comes into play. A modular blockchain decouples the core functions of blockchain operation. That is, execution, consensus, settlement, and data availability. Into separate, specialized layers. This approach leads to lower costs and better overall performance as each layer is optimized for its specific task.
+
+Whereas popular blockchains like Ethereum, Binance Smart Chain, Solana, and others handle processes such as execution, consensus, settlement, and data availability all at the node or network level. Sometimes referred to as Monolithic blockchains. Modular blockchains like Mantle separate these functions into different layers. This separation translates into lower gas costs and improved overall performance.
+
+This modular structure also potentially addresses the classic ‘Scalability Trilemma’ in blockchains. That’s the trade-off between scalability, security, and decentralization. Here’s how: by separating resources, we increase network efficiency as each layer specializes in a particular task. All users operate at the same level of improved security, as opposed to only validators or full nodes on Layer 1. And technologies such as fraud proofs and Zero-Knowledge proofs, which operate on separate layers, reduce the overall execution and validation load on the nodes since they don’t need to execute all transactions for checking validity anymore.
+
+And that’s the essence of Mantle’s modular approach to blockchain rollups. An innovative approach that optimizes performance, reduces costs, and balances scalability, security, and decentralization in a way that current systems can’t match. Fascinating stuff, isn’t it?
+
+Having understood Mantle’s modular approach and how it addresses scalability and security, let’s delve into fraud proofs and how Mantle implements them. But before we do that, let’s take a moment to understand what fraud proofs are and what role they play in the world of blockchain and layer 2 solutions.
+
+In a blockchain context, a fraud proof is a mechanism used to validate the correctness of a block or transaction. Fraud proofs are particularly useful in Layer 2 (L2) scaling solutions like Optimistic Rollups (ORs) where computations are performed off-chain to reduce the load on the base layer also known as Layer 1.
+
+In an OR setup, a sequencer, processes transactions off-chain and posts the resulting state (or state root) to the L1 chain. However, this process can be open to manipulation as there’s an inherent trust that the sequencer will act honestly and not post an invalid state. This is where fraud proofs come in. They offer a mechanism for network participants to challenge and prove the incorrectness of the state root submitted by the sequencer, ensuring the system maintains its security and trustlessness.
+
+Now let’s understand Mantle’s implementation of fraud proofs.
+
+Mantle, a modular L2 network, employs a fraud proof system to validate transactions and minimize trust assumptions. In traditional fraud proof mechanisms, the contract that settles disputes, also known as the on-chain verifier, operates on a lower-level virtual machine such as MIPS or WASM. As a result, an Ethereum Virtual Machine (EVM) client has to recompile their fraud proof into the lower-level language to be interpretable by the on-chain verifier. This process happens outside the scope of the EVM, leading to potential trust issues.
+
+In contrast, Mantle takes a different approach. By compiling and verifying fraud proofs using EVM-level instructions, Mantle allows all Ethereum clients to interact with a common proof system, permissionlessly. This method reduces trust assumptions across verifiers, clients, and compilers. It ensures that the fraud proof’s contents are derived directly from a compliant EVM client, and the on-chain verifier is no longer blind to the producer of the fraud proof.
+
+Mantle’s novel approach to fraud proofs forms a key part of its security architecture. Combined with its decentralized sequencer, Mantle aims to significantly improve the resilience and trustlessness of its network.
+
+In Mantle’s L2 network, verifiers perform multiple functions. They sync rollup data generated by sequencers, serve it to users and applications, and are incentivised to do so via BIT rewards. They also run contracts with the same state root verification mechanism as L1 contracts and verify the data submitted by sequencers.
+
+Most importantly, verifiers perform the essential duty of submitting fraud proofs when they detect an invalid state transition. They use fraud proofs as the evidence of an invalid state transition to initiate the validation process.
+
+The verifiers operate within a challenge period, during which any network actor can submit a fraud proof disputing a state they believe to be incorrect. This challenge period is typically around seven days for most OR protocols. To tackle the direct consequence of this challenge period — long withdrawal times — Mantle uses Multi-Party Computation (MPC) technology to verify transaction batches before publishing them to Ethereum. This mechanism reduces the waiting time from seven days to one to two days.
+
+Mantle uses an interactive fraud proof system, wherein two or more parties work in tandem to verify an assertion. One party claims a fraudulent assertion, and the other defends the said assertion. The verifier interacts with the challenger to narrow down the assertion to a single state transition, which is then verified for its validity.
+
+Mantle is further improving its fraud proof mechanism to compile and execute fraud proofs using EVM-level instructions, thereby eliminating the need for low-level transpiling. This improvement, developed in collaboration with Specular, allows all types of Ethereum clients to interact natively and permissionlessly with a common fraud proof system, further reducing trust assumptions.
+
+Verifiers and fraud proofs form a critical part of Mantle’s L2 rollup network, contributing to its decentralization, security, and scalability. With its innovative use of fraud proofs and commitment to enhancing the rollup network’s features, Mantle is poised to supercharge Ethereum and build a rich ecosystem of decentralized applications (dApps). For more information on Mantle’s technology and plans, you can visit their technical documentation or website.
+
+Okay, let’s move forward! Having a brief understanding of the fraud proofs and howthey work in the context of the Mantle network, let’s dive deeper into what is the data availability problem and what is Mantle’s unique approach to solving it.
+
+In the context of blockchain, data availability is about ensuring that all the data necessary to maintain and operate the blockchain is readily available to all network participants at all times. This is fundamental for the smooth functioning of the network and for maintaining its transparency, trust, and security.
+
+However, with the increasing scale and complexity of blockchain networks, ensuring data availability becomes quite a significant challenge. This is particularly so in decentralized networks where data isn’t stored in a central location but is distributed across a network of nodes.
+
+Consider a Layer 2 solution like a rollup, for example. The rollup processes transactions off-chain and then posts the aggregated result to the main Ethereum chain. But what if, for some reason, the data associated with these off-chain transactions becomes unavailable? What if a malicious operator withholds the data, or if a node simply goes offline unexpectedly?
+
+In such scenarios, the security and integrity of the entire Layer 2 solution could be compromised. Other participants in the network may be unable to verify the correctness of the rollup’s transactions, which could lead to fraudulent activity or inconsistencies in the blockchain.
+
+This is known as the data availability problem. The challenge lies in creating mechanisms that ensure data is always accessible to all nodes in the network, regardless of the scale of the network or the actions of individual nodes.
+
+Mantle is addressing this issue using EigenLayer, which leverages the existing Ethereum network to provide data availability guarantees.
+
+Data availability is particularly crucial in the context of blockchains that operate on a rollup architecture. This is to eliminate the possibility of block data being withheld, maliciously or otherwise. The reliability of Ethereum’s trust network is largely derived from its widespread validator network running a solid consensus algorithm and the relatively well-distributed Ethereum token, ETH.
+
+This is where EigenLayer comes in, a unique approach to solving data availability while maintaining security. EigenLayer is a re-staking protocol that leverages Ethereum’s existing trust network, enabling any rollup-based Layer 2 to guarantee data availability to its execution layer, while maintaining the same level of security as the Ethereum mainnet. It does this through a re-staking mechanism where Layer 1 validators can opt in to provide data availability services and are subject to additional performance conditions, using their staked Ethereum as collateral. Think of it as an Ethereum middleware platform.
+
+Just as optimistic rollups use economic incentives to maintain system integrity, this mechanism also puts incentives in place for Ethereum validators to provide their services for additional yield opportunities.
+
+In light of this, Mantle is exploring EigenLayer’s Data Availability solution, known as EigenDA. This implementation allows nodes to provide data availability services to the Mantle network, participate in Mantle’s economic model via BIT staking. This not only ensures block data completeness and correctness on the Mantle execution layer but also takes advantage of Layer 1 security features.
+
+An interesting implication of this dual-quorum model is the increased staking utility for BIT in addition to the governance capabilities it offers.
+
+EigenDA brings several unique characteristics to the table. It allows for the decoupling of the data availability layer from the consensus layer and employs a unicast channel for data exchange between network participants, delivering efficiency gains both in terms of data transmission and storage. It maintains an erasure rate, which ensures pieces of block data from Layer 2 and Layer 1 sources can be used by verifying actors to reconstruct complete block data.
+
+This innovative approach could provide the high throughput necessary for next-generation applications in blockchain gaming, decentralized social networks, and more. Additionally, the Mantle Explorer displays the EigenDA proofs for the rollup data that has been stored on the data availability layer, just as it does for the transactions taking place on Layer 2.
+
+In this way, Mantle is taking significant steps in solving data availability issues in blockchain, leveraging the EigenLayer concept and presenting a promising future for blockchain technology.
+
+Let me know in the comments section if you want me to do a deeper dive into how exactly the EigenLayer works and what it brings to the table!
+
+We’ve spoken about solving the data availability problem, but there’s more to the Mantle story. They’ve also got their sights set on introducing next-generation trustlessness by decentralizing the sequencer in their Optimistic Rollups. But first let’s understand what sequencers are.
+
+In the context of blockchain and cryptocurrency, particularly within layer 2 solutions such as Optimistic Rollups, a Sequencer is a specialised node that plays a crucial role in aggregating and ordering transactions.
+
+The sequencer’s primary function is to take multiple transactions occurring on the layer 2 network, bundle them together, and then submit this bundle as a single batch onto the base layer 1 network (like Ethereum). This process is often referred to as “rollup” of transactions.
+
+In traditional setups, there’s typically a single sequencer performing these operations which helps increase efficiency and reduce costs. Because the sequencer batches many transactions together, it significantly decreases the number of individual transactions that need to be directly processed on the slower, more expensive layer 1 network. This process helps to achieve higher throughput and scalability, while still maintaining the security and decentralization properties of the underlying layer 1 network.
+
+A Sequencer in Optimistic Rollups, is a node that consolidates transactions from the Optimistic Rollup network into batches, which are then submitted to the base Layer 1 (L1) Ethereum network. This process effectively allows transactions to occur off-chain on the Optimistic Rollup (OR) network, thereby reducing fees and increasing speed while maintaining the security and trustlessness of the Ethereum network. In the traditional OR setup, there is typically a single Sequencer that is trusted to perform these operations.
+
+However, having a single sequencer, which is often operated by the rollup’s core team, can lead to a degree of centralization, where the sequencer could theoretically censor transactions or become a single point of failure. These sequencers give users an immediate ‘soft confirmation’ that their transactions are included in the block feed destined for Layer 1 recording.
+
+To mitigate this issue Mantle has chosen to implement a decentralized sequencer system within its Optimistic Rollup network. Instead of relying on a single sequencer to batch and submit transactions to the Ethereum network, Mantle aims to have multiple sequencers working within its network, effectively distributing the responsibility of transaction batching across various participants.
+
+In Mantle’s architecture, anyone can join as a Layer 2 block producer or Sequencer and receive rewards for their participation. These Sequencer nodes will receive BIT rewards and will be able to also benefit from any Miner Extractable Value (MEV) available through block production.
+
+By adopting a structure that supports multiple Sequencer nodes, they are striving to bring increased liveness and resilience to the Mantle ecosystem.
+
+Their Decentralized Sequencer Architecture takes into account current Layer 2 rollup mechanisms, which predominantly relys on a single sequencer. While such a sequencer can’t censor a user’s transactions, the need for decentralization remains significant. They aim to achieve two primary goals here:
+
+First, anyone should be able to participate in the sequencer set as an L2 block producer. To realize this, mantle needs to implement a leader election mechanism on Layer 1. A Proof of Stake (PoS) framework is a fitting option for this.
+
+Secondly, Mantle aims to reduce MEV. For this, each sequencer involved in the consensus process must be able to determine the order of transactions. This necessitates the implementation of a Byzantine Fault Tolerance (BFT) consensus mechanism on Layer 2.
+
+Their system strikes a balance between finality and performance by introducing a centralized scheduler to determine which sequencer will produce blocks in the next epoch. The scheduler and the sequencers maintain a communication line to judge the activity of the sequencers and select the next block producer.
+
+Their Layer 2 network presents two roles. The scheduler and the sequencer. The scheduler appoints a leader from the sequencer set according to a leadership election mechanism, validates the blocks produced by sequencers and determines the finality of the blocks.
+
+The sequencers are divided into two categories — the leader of sequencers and the sequencer follower. The leader of sequencers is responsible for rolling up the transactions in Layer 2, producing an L2 block, and broadcasting the new block in the sequencer network. The sequencer followers receive the new block from the leader in the correct epoch and execute the transactions in the new block.
+
+Mantle having such an advanced system allows the network to reap the benefits of both performance and finality. While its full potential and implications are yet to be seen, it holds the promise of advancing the Optimistic Rollup technology in the broader pursuit of scalable, secure, and decentralized blockchain networks.
+
+As of now, Mantle’s decentralized Sequencer system is on the project’s roadmap, and anyone interested in becoming part of the decentralized Sequencer set can contact the Mantle team for more information.
+
+We have learned a lot of new things by now. Let’s see how all of these concepts now tie together by understanding the transaction life cycle.
+
+The transaction lifecycle on Mantle can be broken down into three core stages: The Initiation, The Handling, and The Storage.
+
+Stage 1: The Initiation
+The first stage of a transaction’s lifecycle begins when a wallet user or a dApp wants to perform an operation, such as transferring funds. The user has connected to the Mantle network by integrating a Sequencer node’s RPC endpoint into their wallet. dApps, on the other hand, have integrated the Mantle SDK to facilitate communication with the Mantle network.
+
+The user or dApp formulates a request, which includes the receiver’s address and the amount to transfer, and signs it with their private keys. Keep in mind that a transaction fee is required, not just for the transfer itself, but also for maintaining an immutable public record of the transaction that can be verified by anyone. Once the request is signed and sent, it enters the Mantle network, where a Sequencer is ready to process it.
+
+Stage 2: The Handling
+This stage triggers a standard state verification process. The Ethereum Virtual Machine (EVM) software running on the Sequencer node verifies the transaction to ensure its validity. It also verifies that the necessary fees have been paid and that the transaction doesn’t contain any irregularities.
+
+Once verified, the transaction updates the local state (or ledger) and awaits further processing as part of a pending block. Several pending blocks are then combined into a batch that will be sent to the Ethereum network for finalization. This batching process is part of how Mantle achieves low transaction fees, as it spreads fixed costs over many transactions.
+
+Before moving to the next stage, the batched block data is verified for correctness by another part of the network known as Multi-Party Computation (MPC) nodes. These nodes validate the state roots submitted by the Sequencer as part of the blocks on the layer-2 chain.
+
+Stage 3: The Storage
+Once the batched block data has been verified by the MPC nodes, it’s ready to be sent to the Ethereum network. The Sequencer transmits this data across the network, where it’s received by various actors on both the layer-2 and layer-1 chains.
+
+On the layer-2 chain, Rollup Verifiers sync the block data, making it accessible for other users and dApps. Meanwhile, on the Ethereum network, the block data goes through Ethereum’s consensus mechanism and is then securely recorded on-chain.
+
+Additionally, there are Data Availability (DA) nodes, which sync the block data and guarantee its availability at any time in exchange for BIT rewards.
+
+This synergy forms the backbone of Mantle, achieving instant transaction confirmations and state updates, greatly improving the user experience. It also provides a secure, decentralised environment, complete with multiple checks and balances to curb any malicious activities.
+
+### Exploring malicious scenarios that could occur
+Now, you may be wondering, what happens when things don’t go as planned? Let’s delve into a couple of scenarios that can occur on the Mantle Network and discuss how the system reacts to these.
+
+One potential issue is. What if Multi-Party Computation (MPC) nodes don’t fulfil their obligations? These nodes play a pivotal role in verifying the correctness of state roots submitted by the Sequencer. The Mantle Network has prepared for such situations. If an MPC node falls short, not participating in the verification and signing process, it faces a penalty — its stake is slashed. This stake then gets redistributed among the other operational MPC nodes. This penalty system ensures accountability and serves as a strong deterrent for any node considering neglecting its duties.
+
+Now, let’s pivot to another possible predicament: a Sequencer committing an act of malice. The Mantle Network is built to address this as well. Rollup Verifiers have the ability to detect any invalid block data by verifying state roots. Upon identifying any irregularities, they generate proofs of the malfeasance committed. These proofs can then be presented to smart contracts on the Ethereum network. As a reward for their vigilance, the Rollup Verifiers receive BIT rewards. This methodology ensures that any malicious act is detected and dealt with promptly, maintaining the security and integrity of the entire network.
+
+Having understood the complexities of how the Mantle Network operates, we can now transition to the practical aspects: How can you get started with Mantle? Whether you’re a developer aiming to deploy your smart contracts or an enthusiast looking to understand its mechanics, we’re here to guide you.
+
+Next up, we’re going to delve into a fundamental aspect of using Mantle: transferring assets.
+
+In the realm of blockchain, the process of transferring assets between different blockchains or layers is often referred to as “bridging”. Similar to a physical bridge connecting two separate landscapes, a blockchain “bridge” connects two separate ecosystems, facilitating communication and transfer between them. For instance, consider a situation where you need to convert USD to EUR for a trip to Europe — you’d use a currency exchange. Similarly, in the blockchain universe, if you need to move assets or tokens from one blockchain to another, you use a bridge.
+
+Why do we need these bridges, you ask? Well, Mantle, as a Layer 2 (L2) solution, functions as a distinct blockchain system separate from Ethereum (L1). Just as you’d require an exchange platform to convert your USD to EUR, you need a mechanism to move ETH and other tokens from Ethereum to Mantle, ensuring it’s done in a secure and verifiable manner. This is where the Mantle Bridge comes in, offering a convenient pathway for assets to move in and out of the Mantle network.
+
+Bridges can be divided into two primary types: Trusted Bridges and Trustless Bridges. Trusted Bridges rely on a central entity for their operations, while Trustless Bridges use smart contracts and algorithms for their operations, minimising trust requirements and enabling users to remain in control of their assets. However, as bridges are still evolving, they come with inherent risks, including smart contract bugs, technological failures, and potential hacks.
+
+The process of moving assets between Mantle and Ethereum, often referred to as ‘bridging,’ is enabled by Mantle’s official bridge. This bridge facilitates the transfer of tokens between Mantle and Ethereum and even allows the creation of Layer 2 representations of existing Ethereum tokens.
+
+The Mantle bridge consists of a set of smart contracts on both Ethereum and Mantle. When you send a deposit request for, say, 10 BIT from Ethereum, these tokens get locked in the Ethereum contract, and an equal number of BIT tokens are minted on Mantle and transferred to your wallet. The process is reversed when you want to withdraw from Mantle to Ethereum. The BIT tokens on Mantle are burned, and the same number of BIT tokens locked in the Ethereum contract are released and transferred to your wallet.
+
+You can easily make these deposits and withdrawals by connecting your wallet to the Mantle bridge. However, if you wish to use the Bridge API, you can refer to the Mantle Bridge API documentation for more information and tutorials on how to use the appropriate SDK methods for bridging various tokens.
+
+To sum up, the Mantle Bridge offers a secure and reliable medium for transferring assets between Ethereum and Mantle, which further enhances the usability of Mantle’s Layer 2 solutions. But it’s essential to remember that while bridges bring an impressive range of convenience and functionality, they also introduce their own risks. Therefore, always exercise due diligence when moving assets across networks.
+
+Now that we’ve successfully transferred our assets, let’s shift our focus to the developers in our audience. We’ll guide you through how you can get started by diving into the Mantle documentation.
+
+For developers, the process of deploying contracts on Mantle isn’t much different from deploying your smart contracts on any other Ethereum Layer 2 chains. Your first step towards interacting with Mantle will be connecting to the Mantle Testnet. The official test network of Mantle is known as Mantle Wadsley, and you can find essential details like the ChainID on Mantle’s official page.
+
+A crucial aspect of Mantle’s Testnet is acquiring test BIT, the native token of Mantle. Mantle has established a BIT faucet on Ethereum’s Goerli Testnet. This faucet has an ERC-20 implementation of BIT, along with a method that mints tokens for the caller. However, it’s necessary to have a bit of Goerli ETH, denoted as gETH, to pay the gas fee for minting testnet BIT. If you’re in need of Goerli ETH, faucets like MetaMask or MyCrypto can provide some.
+
+Once you’ve got your testnet BIT, you can use the Testnet Bridge. This Bridge, available on Goerli, facilitates the deposit of BIT from Goerli. Just go to the Testnet Bridge, select “Deposit BIT from Goerli,” and add the Goerli testnet BIT contract address to your wallet. You can use this same bridge to withdraw BIT tokens from Mantle back to Ethereum’s Goerli Testnet.
+
+Now that we’ve covered the basics let’s take a closer look at the Mantle Software Development Kit, or SDK. The Mantle SDK provides a comprehensive suite of features, including inter-network message-passing, token deposit and withdrawal between Layer 1 and Layer 2 networks, creation of ERC-20 tokens on Layer 2 mapping to Layer 1 token, and monitoring of contract calls and messages. The SDK’s modules make it easy to connect the Mantle network to wallets, exchanges, and other applications.
+
+To wrap up this getting-started guide, remember that Decentralised Applications, or dApps, require access to nodes to fetch block data and send transactions. Mantle provides this access through its Node API, which supports Ethereum’s JSON-RPC API implementation. This API can be accessed using HTTPS and WebSocket. More information about using the Mantle Node API can be found on Mantle’s official Node API page.
+
+Whether you’re a developer looking to integrate your smart contracts or a curious enthusiast eager to dip your toes into the blockchain waters, Mantle provides a user-friendly and innovative platform to explore. Stay tuned as we delve deeper into Mantle and other intriguing blockchain technologies in our future episodes.
+
+Well, dear listeners, we have come to the end of yet another enlightening episode of the Poppyseed Dev podcast. We hope that today’s dive into Mantle, its mechanisms, and the how-tos of getting started have been both educational and inspiring.
+
+As developers and enthusiasts in this ever-evolving tech world, we continuously encounter new frontiers and innovative platforms like Mantle. They challenge us to learn, adapt, and, in turn, shape the future of blockchain technology.
+
+Remember, the initial steps can seem complicated, but with resources and guides available, starting with Mantle isn’t an insurmountable task. So whether you plan to develop sophisticated smart contracts or simply wish to understand the workings of Ethereum’s Layer 2 solutions, Mantle provides an excellent learning ground.
+
+Thank you for joining us on this journey today. Your curiosity and eagerness to learn are what drives this podcast. We hope to see you in our next episode, where we’ll continue our journey, exploring more fascinating topics in the world of blockchain and decentralised technology. Until then, happy coding!
+
