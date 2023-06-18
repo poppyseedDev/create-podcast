@@ -1,7 +1,7 @@
 import os
 from pydub import AudioSegment
 from pydub.utils import make_chunks
-from constants import DURATION_BETWEEN_AUDIO_CHUNKS
+from create_audio.constants import DURATION_BETWEEN_AUDIO_CHUNKS
 
 class AudioMerger:
     def __init__(self, directory):
