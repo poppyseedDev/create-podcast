@@ -1,6 +1,7 @@
 import requests
 import json
 from dotenv import dotenv_values
+from constants import VOICE_STABILITY, VOICE_SIMILARITY_BOOST
 
 class TextToSpeechAPI:
     def __init__(self, base_url):
